@@ -2,8 +2,8 @@
 
 set -e
 
-./deploy.sh
-./postinstall.sh
-./load_test_env.sh
+$(dirname $0)/deploy.sh
+$(dirname $0)/postinstall.sh
+$(dirname $0)/load_test_env.sh
 
-./info.sh
+$(dirname $0)/info.sh
