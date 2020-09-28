@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 function get_mm_deleted_stack_id() {
     aws cloudformation list-stacks \
       --output text \

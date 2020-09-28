@@ -3,7 +3,7 @@
 function get_mm_stack_arn() {
     aws cloudformation list-stacks \
       --output text \
-      --query 'sort_by(StackSummaries[?StackName==`MythicalMysfits-'$1'`]|[?StackStatus==`CREATE_COMPLETE`], &CreationTime)[-1].StackId'
+      --query 'sort_by(StackSummaries[?StackName==`MythicalMysfits-'$1'`]|[?StackStatus==`CREATE_COMPLETE` || StackStatus==`UPDATE_COMPLETE`], &CreationTime)[-1].StackId'
 }
 
 function get_mm_stack_output() {
@@ -11,6 +11,13 @@ function get_mm_stack_output() {
       --output text \
       --stack-name $1 \
       --query 'Stacks[0].Outputs[?OutputKey==`'$2'`].OutputValue'
+}
+
+function get_mm_stack_output_fuzzy() {
+    aws cloudformation describe-stacks \
+      --output text \
+      --stack-name $1 \
+      --query 'Stacks[0].Outputs[?starts_with(OutputKey, `'$2'`)].OutputValue'
 }
 
 function get_mm_stack_resource() {
