@@ -1,14 +1,12 @@
 import boto3
 import json
 import os
-# UNCOMMENT_BEFORE_2ND_DEPLOYMENT
-#from aws_xray_sdk.core import xray_recorder
+# UNCOMMENT_BEFORE_2ND_DEPLOYMENT - below 2 lines
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.core import patch_all
 
-# UNCOMMENT_BEFORE_2ND_DEPLOYMENT
-#from aws_xray_sdk.core import patch_all
-
-# UNCOMMENT_BEFORE_2ND_DEPLOYMENT
-#patch_all()
+# UNCOMMENT_BEFORE_2ND_DEPLOYMENT - below 1 line
+patch_all()
 
 snsTopic = os.environ['SNS_TOPIC_ARN']
 sns = boto3.client('sns')

@@ -1,14 +1,9 @@
 # The code to be used as an AWS Lambda function for processing real-time
 # user click records from Kinesis Firehose and adding additional attributes
 # to them before they are stored in Amazon S3.
-from __future__ import print_function
-
 import base64
-
 import json
-
 import requests
-
 import os
 
 # Send a request to the Mysfits Service API that we have created in previous
